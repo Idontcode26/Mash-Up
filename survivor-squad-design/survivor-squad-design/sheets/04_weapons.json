@@ -1,0 +1,42 @@
+{
+  "sheet": "weapons",
+  "purpose": "The four gun types behind the primary-skill variants. One row becomes one weapon definition in code.",
+  "key": "id",
+  "notes": "No scope or zoom in release 1. Reserve ammo is unlimited (RoR2 has no ammo pickups). All numbers are first guesses. Tune them in playtest; they are design cells, not facts to verify.",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "display_name": {"kind": "design", "type": "string"},
+    "class": {"kind": "design", "type": "enum", "values": ["rifle", "shotgun", "smg", "sniper"]},
+    "l4d2_weapon": {"kind": "fact", "check": "l4d2-files", "type": "string", "about": "L4D2's internal weapon name, used to find its sound script entries and weapon script."},
+    "model_asset": {"kind": "ref", "to": "assets"},
+    "hand_attachment": {"kind": "fact", "check": "l4d2-files", "type": "string", "about": "Bone or attachment on Coach's model where the gun is held."},
+    "muzzle_attachment": {"kind": "fact", "check": "l4d2-files", "type": "string", "about": "Attachment on the gun model where shots and flashes start."},
+    "fire_mode": {"kind": "design", "type": "enum", "values": ["auto", "semi"]},
+    "damage_coefficient": {"kind": "design", "type": "number", "about": "Per bullet or pellet, times the body's base damage."},
+    "bullets_per_shot": {"kind": "design", "type": "number"},
+    "spread_deg": {"kind": "design", "type": "number"},
+    "fire_interval_s": {"kind": "design", "type": "number"},
+    "clip_size": {"kind": "design", "type": "number"},
+    "reload_mode": {"kind": "design", "type": "enum", "values": ["magazine", "per_shell"]},
+    "reload_time_s": {"kind": "design", "type": "number", "about": "Whole magazine, or per shell for per_shell."},
+    "falloff": {"kind": "design", "type": "string"},
+    "pierce_count": {"kind": "design", "type": "number"},
+    "proc_coefficient": {"kind": "design", "type": "number"},
+    "max_range_m": {"kind": "design", "type": "number"},
+    "fire_sound": {"kind": "ref", "to": "assets"},
+    "reload_sound": {"kind": "ref", "to": "assets"},
+    "empty_sound": {"kind": "ref", "to": "assets"},
+    "idle_anim": {"kind": "ref", "to": "animations"},
+    "run_anim": {"kind": "ref", "to": "animations"},
+    "fire_anim": {"kind": "ref", "to": "animations"},
+    "reload_anim": {"kind": "ref", "to": "animations"},
+    "reload_loop_anim": {"kind": "ref", "to": "animations"},
+    "reload_end_anim": {"kind": "ref", "to": "animations"}
+  },
+  "rows": [
+    {"id": "rifle", "display_name": "Assault Rifle", "class": "rifle", "l4d2_weapon": "weapon_rifle", "model_asset": "mdl_rifle", "hand_attachment": null, "muzzle_attachment": null, "fire_mode": "auto", "damage_coefficient": 0.5, "bullets_per_shot": 1, "spread_deg": 1.2, "fire_interval_s": 0.11, "clip_size": 40, "reload_mode": "magazine", "reload_time_s": 2.2, "falloff": "None", "pierce_count": 0, "proc_coefficient": 0.5, "max_range_m": 120, "fire_sound": "snd_rifle_fire", "reload_sound": "snd_rifle_reload", "empty_sound": "snd_rifle_empty", "idle_anim": "anim_rifle_idle", "run_anim": "anim_rifle_run", "fire_anim": "anim_rifle_fire", "reload_anim": "anim_rifle_reload", "reload_loop_anim": "n/a", "reload_end_anim": "n/a", "verified": []},
+    {"id": "shotgun", "display_name": "Pump Shotgun", "class": "shotgun", "l4d2_weapon": "weapon_pumpshotgun", "model_asset": "mdl_shotgun", "hand_attachment": null, "muzzle_attachment": null, "fire_mode": "semi", "damage_coefficient": 0.45, "bullets_per_shot": 8, "spread_deg": 4.5, "fire_interval_s": 0.85, "clip_size": 8, "reload_mode": "per_shell", "reload_time_s": 0.45, "falloff": "Buckshot", "pierce_count": 0, "proc_coefficient": 0.4, "max_range_m": 40, "fire_sound": "snd_shotgun_fire", "reload_sound": "snd_shotgun_reload", "empty_sound": "snd_shotgun_empty", "idle_anim": "anim_shotgun_idle", "run_anim": "anim_shotgun_run", "fire_anim": "anim_shotgun_fire", "reload_anim": "anim_shotgun_reload_start", "reload_loop_anim": "anim_shotgun_reload_loop", "reload_end_anim": "anim_shotgun_reload_end", "verified": []},
+    {"id": "smg", "display_name": "SMG", "class": "smg", "l4d2_weapon": "weapon_smg", "model_asset": "mdl_smg", "hand_attachment": null, "muzzle_attachment": null, "fire_mode": "auto", "damage_coefficient": 0.35, "bullets_per_shot": 1, "spread_deg": 2.2, "fire_interval_s": 0.07, "clip_size": 50, "reload_mode": "magazine", "reload_time_s": 1.9, "falloff": "None", "pierce_count": 0, "proc_coefficient": 0.35, "max_range_m": 70, "fire_sound": "snd_smg_fire", "reload_sound": "snd_smg_reload", "empty_sound": "snd_smg_empty", "idle_anim": "anim_smg_idle", "run_anim": "anim_smg_run", "fire_anim": "anim_smg_fire", "reload_anim": "anim_smg_reload", "reload_loop_anim": "n/a", "reload_end_anim": "n/a", "verified": []},
+    {"id": "sniper", "display_name": "Hunting Rifle", "class": "sniper", "l4d2_weapon": "weapon_hunting_rifle", "model_asset": "mdl_sniper", "hand_attachment": null, "muzzle_attachment": null, "fire_mode": "semi", "damage_coefficient": 3.2, "bullets_per_shot": 1, "spread_deg": 0.2, "fire_interval_s": 0.7, "clip_size": 6, "reload_mode": "magazine", "reload_time_s": 2.4, "falloff": "None", "pierce_count": 1, "proc_coefficient": 1.0, "max_range_m": 300, "fire_sound": "snd_sniper_fire", "reload_sound": "snd_sniper_reload", "empty_sound": "snd_sniper_empty", "idle_anim": "anim_sniper_idle", "run_anim": "anim_sniper_run", "fire_anim": "anim_sniper_fire", "reload_anim": "anim_sniper_reload", "reload_loop_anim": "n/a", "reload_end_anim": "n/a", "verified": []}
+  ]
+}

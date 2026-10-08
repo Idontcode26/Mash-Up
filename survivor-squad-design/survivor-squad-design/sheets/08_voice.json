@@ -1,0 +1,34 @@
+{
+  "sheet": "voice",
+  "purpose": "Coach's voice triggers. Each row says when a line may play and what kind of real L4D2 line fits; the exact files are found in the L4D2 voice folder.",
+  "key": "id",
+  "notes": "Lines are chosen from what Coach actually says in L4D2; if a category has no fitting line, drop that trigger rather than reuse an unrelated one. All numbers are first guesses. Tune them in playtest; they are design cells, not facts to verify.",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "survivor": {"kind": "ref", "to": "survivors"},
+    "trigger": {"kind": "design", "type": "string"},
+    "event_hook": {"kind": "ref", "to": "hooks"},
+    "cooldown_s": {"kind": "design", "type": "number"},
+    "chance": {"kind": "design", "type": "number"},
+    "priority": {"kind": "design", "type": "number", "about": "Higher wins when two lines compete."},
+    "vo_category": {"kind": "design", "type": "string"},
+    "vo_asset": {"kind": "ref", "to": "assets"}
+  },
+  "rows": [
+    {"id": "voice_stage_start", "survivor": "coach", "trigger": "Coach's body spawns on a stage (pod lands)", "event_hook": "voice_events", "cooldown_s": 0, "chance": 1.0, "priority": 5, "vo_category": "start-of-level and ready lines", "vo_asset": "vo_coach_stage_start", "verified": []},
+    {"id": "voice_kill_streak", "survivor": "coach", "trigger": "5 kills within 4 seconds", "event_hook": "voice_events", "cooldown_s": 20, "chance": 0.6, "priority": 3, "vo_category": "taunts and kill celebrations", "vo_asset": "vo_coach_kill_streak", "verified": []},
+    {"id": "voice_elite_kill", "survivor": "coach", "trigger": "an elite or boss dies to Coach", "event_hook": "voice_events", "cooldown_s": 15, "chance": 0.8, "priority": 4, "vo_category": "celebration lines", "vo_asset": "vo_coach_elite_kill", "verified": []},
+    {"id": "voice_low_health", "survivor": "coach", "trigger": "health drops below 30%", "event_hook": "voice_events", "cooldown_s": 25, "chance": 0.8, "priority": 7, "vo_category": "hurt and needs-help lines", "vo_asset": "vo_coach_low_health", "verified": []},
+    {"id": "voice_hurt", "survivor": "coach", "trigger": "takes a big hit (at most once per 6 seconds)", "event_hook": "voice_events", "cooldown_s": 6, "chance": 0.5, "priority": 2, "vo_category": "pain grunts", "vo_asset": "vo_coach_hurt", "verified": []},
+    {"id": "voice_reloading", "survivor": "coach", "trigger": "reload starts with enemies within 30 m", "event_hook": "voice_events", "cooldown_s": 12, "chance": 0.5, "priority": 2, "vo_category": "reloading callouts", "vo_asset": "vo_coach_reloading", "verified": []},
+    {"id": "voice_throw_pipebomb", "survivor": "coach", "trigger": "throws a pipe bomb", "event_hook": "voice_events", "cooldown_s": 4, "chance": 0.9, "priority": 5, "vo_category": "pipe bomb callouts", "vo_asset": "vo_coach_throw_pipebomb", "verified": []},
+    {"id": "voice_throw_molotov", "survivor": "coach", "trigger": "throws a Molotov", "event_hook": "voice_events", "cooldown_s": 4, "chance": 0.9, "priority": 5, "vo_category": "Molotov callouts", "vo_asset": "vo_coach_throw_molotov", "verified": []},
+    {"id": "voice_throw_bile", "survivor": "coach", "trigger": "throws a bile jar", "event_hook": "voice_events", "cooldown_s": 4, "chance": 0.9, "priority": 5, "vo_category": "bile jar callouts", "vo_asset": "vo_coach_throw_bile", "verified": []},
+    {"id": "voice_adrenaline", "survivor": "coach", "trigger": "uses Adrenaline", "event_hook": "voice_events", "cooldown_s": 8, "chance": 0.8, "priority": 4, "vo_category": "adrenaline use lines", "vo_asset": "vo_coach_adrenaline", "verified": []},
+    {"id": "voice_shove", "survivor": "coach", "trigger": "shoves (rate limited)", "event_hook": "voice_events", "cooldown_s": 3, "chance": 0.35, "priority": 1, "vo_category": "effort grunts", "vo_asset": "vo_coach_shove", "verified": []},
+    {"id": "voice_boss_spawn", "survivor": "coach", "trigger": "a teleporter boss or champion spawns", "event_hook": "voice_events", "cooldown_s": 30, "chance": 1.0, "priority": 8, "vo_category": "Tank warning lines", "vo_asset": "vo_coach_boss_spawn", "verified": []},
+    {"id": "voice_teleporter_start", "survivor": "coach", "trigger": "the teleporter event begins", "event_hook": "voice_events", "cooldown_s": 60, "chance": 1.0, "priority": 8, "vo_category": "horde and panic-event lines", "vo_asset": "vo_coach_teleporter_start", "verified": []},
+    {"id": "voice_teleporter_done", "survivor": "coach", "trigger": "the teleporter finishes charging", "event_hook": "voice_events", "cooldown_s": 60, "chance": 1.0, "priority": 6, "vo_category": "relief and head-for-the-exit lines", "vo_asset": "vo_coach_teleporter_done", "verified": []},
+    {"id": "voice_death", "survivor": "coach", "trigger": "Coach dies", "event_hook": "voice_events", "cooldown_s": 0, "chance": 1.0, "priority": 10, "vo_category": "death lines", "vo_asset": "vo_coach_death", "verified": []}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "sheet": "survivors",
+  "purpose": "Playable Survivors. Release 1 has Coach only; Ellis, Nick and Rochelle come in later releases as new rows.",
+  "key": "id",
+  "notes": "Base stats mirror an average RoR2 survivor on purpose: the four Survivors share one kit and differ in looks, voices and banter. All numbers are first guesses. Tune them in playtest; they are design cells, not facts to verify.",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "display_name": {"kind": "design", "type": "string"},
+    "l4d2_codename": {"kind": "fact", "check": "l4d2-files", "type": "string", "about": "Internal model name (the demo files use Coach, Gambler, Mechanic, Producer)."},
+    "model_asset": {"kind": "ref", "to": "assets"},
+    "lobby_anim": {"kind": "ref", "to": "animations"},
+    "bodygroup_defaults": {"kind": "fact", "check": "l4d2-files", "type": "string", "about": "Body group and skin choices that give the standard look, read from the MDL."},
+    "portrait_method": {"kind": "design", "type": "string"},
+    "base_max_health": {"kind": "design", "type": "number"},
+    "level_max_health": {"kind": "design", "type": "number"},
+    "base_regen": {"kind": "design", "type": "number"},
+    "level_regen": {"kind": "design", "type": "number"},
+    "base_damage": {"kind": "design", "type": "number"},
+    "level_damage": {"kind": "design", "type": "number"},
+    "base_move_speed": {"kind": "design", "type": "number"},
+    "base_jump_power": {"kind": "design", "type": "number"},
+    "base_armor": {"kind": "design", "type": "number"},
+    "base_crit": {"kind": "design", "type": "number"},
+    "base_attack_speed": {"kind": "design", "type": "number"},
+    "ror2_body_name": {"kind": "design", "type": "string"},
+    "ror2_survivor_name": {"kind": "design", "type": "string"},
+    "name_token": {"kind": "design", "type": "string"},
+    "desc_token": {"kind": "design", "type": "string"},
+    "ror2_registration": {"kind": "fact", "check": "ror2-code", "type": "string"},
+    "unlock": {"kind": "design", "type": "string"},
+    "solo_only": {"kind": "design", "type": "bool"}
+  },
+  "rows": [
+    {"id": "coach", "display_name": "Coach", "l4d2_codename": "coach", "model_asset": "mdl_coach", "lobby_anim": "anim_lobby_idle", "bodygroup_defaults": null, "portrait_method": "render a still from the loaded model (needs no extra L4D2 file)", "base_max_health": 110, "level_max_health": 33, "base_regen": 1.0, "level_regen": 0.2, "base_damage": 12, "level_damage": 2.4, "base_move_speed": 7, "base_jump_power": 15, "base_armor": 0, "base_crit": 1, "base_attack_speed": 1, "ror2_body_name": "SurvivorSquad_CoachBody", "ror2_survivor_name": "SurvivorSquad_Coach", "name_token": "SURVIVORSQUAD_COACH_NAME", "desc_token": "SURVIVORSQUAD_COACH_DESC", "ror2_registration": "ContentPack through an IContentPackProvider (candidate)", "unlock": "none (available from the start)", "solo_only": true, "verified": []}
+  ]
+}

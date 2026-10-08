@@ -1,0 +1,28 @@
+{
+  "sheet": "abilities",
+  "purpose": "Secondary and utility skills that are neither guns nor throwables. 'n/a' marks a property the ability does not have.",
+  "key": "id",
+  "notes": "All numbers are first guesses. Tune them in playtest; they are design cells, not facts to verify.",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "display_name": {"kind": "design", "type": "string"},
+    "kind": {"kind": "design", "type": "enum", "values": ["melee-cone", "self-buff"]},
+    "radius_m": {"kind": "design", "type": "number"},
+    "arc_deg": {"kind": "design", "type": "number"},
+    "damage_coefficient": {"kind": "design", "type": "number"},
+    "force": {"kind": "design", "type": "number"},
+    "stun_s": {"kind": "design", "type": "number"},
+    "duration_s": {"kind": "design", "type": "number"},
+    "move_speed_mult": {"kind": "design", "type": "number"},
+    "attack_speed_mult": {"kind": "design", "type": "number"},
+    "barrier_fraction": {"kind": "design", "type": "number"},
+    "use_sound": {"kind": "ref", "to": "assets"},
+    "use_anim": {"kind": "ref", "to": "animations"},
+    "prop_asset": {"kind": "ref", "to": "assets"},
+    "hook": {"kind": "ref", "to": "hooks"}
+  },
+  "rows": [
+    {"id": "shove", "display_name": "Shove", "kind": "melee-cone", "radius_m": 5.0, "arc_deg": 110, "damage_coefficient": 1.0, "force": 1800, "stun_s": 1.0, "duration_s": "n/a", "move_speed_mult": "n/a", "attack_speed_mult": "n/a", "barrier_fraction": "n/a", "use_sound": "snd_shove", "use_anim": "anim_shove", "prop_asset": "n/a", "hook": "shove_attack", "verified": []},
+    {"id": "adrenaline", "display_name": "Adrenaline", "kind": "self-buff", "radius_m": "n/a", "arc_deg": "n/a", "damage_coefficient": "n/a", "force": "n/a", "stun_s": "n/a", "duration_s": 4.0, "move_speed_mult": 1.5, "attack_speed_mult": 1.25, "barrier_fraction": 0.15, "use_sound": "snd_adrenaline", "use_anim": "anim_adrenaline", "prop_asset": "mdl_adrenaline", "hook": "adrenaline_buff", "verified": []}
+  ]
+}

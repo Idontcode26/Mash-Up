@@ -1,0 +1,23 @@
+{
+  "sheet": "games",
+  "purpose": "The two games and their roles in the recipe. 'primary' = the game Melty installs into and starts; 'companion' = read from the player's own copy (Melty passes its folder).",
+  "key": "id",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "name": {"kind": "design", "type": "string"},
+    "melty_slug": {"kind": "design", "type": "string"},
+    "role": {"kind": "design", "type": "enum", "values": ["primary", "companion"]},
+    "engine": {"kind": "design", "type": "string"},
+    "loader": {"kind": "design", "type": "string"},
+    "mod_dirs": {"kind": "design", "type": "string"},
+    "what_it_brings": {"kind": "design", "type": "string"},
+    "folder_delivery": {"kind": "fact", "check": "melty-tools", "type": "string", "about": "How the mod learns the L4D2 folder: an env var of the mod's own, set in the recipe from {game:left-4-dead-2} (or a file mapping). Confirm with validate_recipe."},
+    "toolchain": {"kind": "fact", "check": "ror2-code", "type": "string", "about": "Target framework, Unity version and BepInEx 5 build to compile against."},
+    "tested_build": {"kind": "fact", "check": "melty-tools", "type": "string", "about": "Build id or version of each installed game this sheet set was checked against."},
+    "game_info_findings": {"kind": "fact", "check": "melty-tools", "type": "string", "about": "What game_info says: account risk (if any), what stopped other mashups, how a mod reads camera, key bindings and players."}
+  },
+  "rows": [
+    {"id": "ror2", "name": "Risk of Rain 2", "melty_slug": "risk-of-rain-2", "role": "primary", "engine": "unity", "loader": "bepinex-5 (installed by Melty)", "mod_dirs": "plugins={game}/BepInEx/plugins; patchers={game}/BepInEx/patchers; config={game}/BepInEx/config", "what_it_brings": "The game the player is in: stages, enemies, items, loadout screen and skill system. The mod's code runs inside it.", "folder_delivery": "n/a", "toolchain": "net472 with BepInEx 5 and HarmonyX, Unity 2019-era Mono (candidate)", "tested_build": null, "game_info_findings": null, "verified": []},
+    {"id": "l4d2", "name": "Left 4 Dead 2", "melty_slug": "left-4-dead-2", "role": "companion", "engine": "source", "loader": "none (files are only read, never changed)", "mod_dirs": "addons={game}/left4dead2/addons (not used by this mashup)", "what_it_brings": "Coach's real model, animations and voice lines; the real guns and throwables and their sounds. All read from the player's own install at runtime. Nothing from L4D2 ships in the upload.", "folder_delivery": "env var SURVIVORSQUAD_L4D2_DIR set from {game:left-4-dead-2} in the recipe (candidate)", "toolchain": "n/a", "tested_build": null, "game_info_findings": null, "verified": []}
+  ]
+}

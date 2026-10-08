@@ -1,0 +1,33 @@
+{
+  "sheet": "throwables",
+  "purpose": "The three throwables behind the special-skill variants.",
+  "key": "id",
+  "notes": "All numbers are first guesses. Tune them in playtest; they are design cells, not facts to verify.",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "display_name": {"kind": "design", "type": "string"},
+    "l4d2_item": {"kind": "fact", "check": "l4d2-files", "type": "string", "about": "L4D2's internal item name, used to find its sound script entries."},
+    "model_asset": {"kind": "ref", "to": "assets"},
+    "throw_anim": {"kind": "ref", "to": "animations"},
+    "throw_sound": {"kind": "ref", "to": "assets"},
+    "loop_sound": {"kind": "ref", "to": "assets"},
+    "impact_sound": {"kind": "ref", "to": "assets"},
+    "detonate_on": {"kind": "design", "type": "enum", "values": ["timer", "impact"]},
+    "fuse_s": {"kind": "design", "type": "number"},
+    "throw_speed_mps": {"kind": "design", "type": "number"},
+    "gravity_scale": {"kind": "design", "type": "number"},
+    "effect_radius_m": {"kind": "design", "type": "number"},
+    "effect_duration_s": {"kind": "design", "type": "number"},
+    "damage_coefficient": {"kind": "design", "type": "number"},
+    "status_effect": {"kind": "design", "type": "string"},
+    "lure_mechanism": {"kind": "fact", "check": "ror2-code", "type": "string", "about": "How enemies are drawn toward the item. Candidate: override the AI's target while the effect lasts."},
+    "lure_fallback": {"kind": "design", "type": "string"},
+    "vfx_prefab": {"kind": "fact", "check": "ror2-code", "type": "string", "about": "Name of the RoR2 effect prefab used for the blast, fire or splash (RoR2's own effects, not L4D2 particles)."},
+    "projectile_hook": {"kind": "ref", "to": "hooks"}
+  },
+  "rows": [
+    {"id": "pipebomb", "display_name": "Pipe Bomb", "l4d2_item": "weapon_pipe_bomb", "model_asset": "mdl_pipebomb", "throw_anim": "anim_throw", "throw_sound": "snd_pipebomb_throw", "loop_sound": "snd_pipebomb_beep", "impact_sound": "snd_pipebomb_explode", "detonate_on": "timer", "fuse_s": 5.0, "throw_speed_mps": 26, "gravity_scale": 1.0, "effect_radius_m": 12, "effect_duration_s": 5.0, "damage_coefficient": 7.0, "status_effect": "none", "lure_mechanism": "override enemy AI targets toward the bomb while it beeps (candidate)", "lure_fallback": "plain timed explosive with no lure; say so in the listing", "vfx_prefab": null, "projectile_hook": "projectile", "verified": []},
+    {"id": "molotov", "display_name": "Molotov", "l4d2_item": "weapon_molotov", "model_asset": "mdl_molotov", "throw_anim": "anim_throw", "throw_sound": "snd_molotov_throw", "loop_sound": "snd_molotov_fire_loop", "impact_sound": "snd_molotov_break", "detonate_on": "impact", "fuse_s": 0, "throw_speed_mps": 24, "gravity_scale": 1.0, "effect_radius_m": 7, "effect_duration_s": 7.0, "damage_coefficient": 1.5, "status_effect": "burn (RoR2's burn damage over time)", "lure_mechanism": "n/a", "lure_fallback": "n/a", "vfx_prefab": null, "projectile_hook": "projectile", "verified": []},
+    {"id": "bile", "display_name": "Bile Jar", "l4d2_item": "weapon_vomitjar", "model_asset": "mdl_bile", "throw_anim": "anim_throw", "throw_sound": "snd_bile_throw", "loop_sound": "n/a", "impact_sound": "snd_bile_splash", "detonate_on": "impact", "fuse_s": 0, "throw_speed_mps": 24, "gravity_scale": 1.0, "effect_radius_m": 6, "effect_duration_s": 8.0, "damage_coefficient": 0, "status_effect": "bile: +20% damage taken (custom buff) and enemies are drawn to the splash", "lure_mechanism": "override enemy AI targets toward the splash zone (candidate)", "lure_fallback": "damage-taken debuff only; say so in the listing", "vfx_prefab": null, "projectile_hook": "projectile", "verified": []}
+  ]
+}

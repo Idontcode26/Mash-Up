@@ -1,0 +1,35 @@
+{
+  "sheet": "skills",
+  "purpose": "One row per skill variant on the loadout screen. Primary and special have several variants (the gear picker); secondary and utility have one each.",
+  "key": "id",
+  "notes": "Reload is handled by an ammo component (see hooks.ammo_and_reload), so guns have zero cooldown. All numbers are first guesses. Tune them in playtest; they are design cells, not facts to verify.",
+  "columns": {
+    "id": {"kind": "design", "type": "string"},
+    "survivor": {"kind": "ref", "to": "survivors"},
+    "slot": {"kind": "design", "type": "enum", "values": ["primary", "secondary", "utility", "special"]},
+    "family": {"kind": "design", "type": "string"},
+    "kind": {"kind": "design", "type": "enum", "values": ["gun", "melee", "buff", "throwable"]},
+    "payload": {"kind": "ref", "to": "*", "about": "'sheet.row' of the weapon, ability or throwable this skill uses."},
+    "display_name": {"kind": "design", "type": "string"},
+    "description": {"kind": "design", "type": "string"},
+    "cooldown_s": {"kind": "design", "type": "number"},
+    "base_max_stock": {"kind": "design", "type": "number"},
+    "must_key_press": {"kind": "design", "type": "bool"},
+    "interrupt_priority": {"kind": "design", "type": "string"},
+    "activation_state_class": {"kind": "design", "type": "string"},
+    "activation_state_machine": {"kind": "fact", "check": "ror2-code", "type": "string", "about": "Which EntityStateMachine runs the state (candidate: Weapon)."},
+    "icon_method": {"kind": "design", "type": "string"},
+    "unlock": {"kind": "design", "type": "string"}
+  },
+  "rows": [
+    {"id": "coach_rifle", "survivor": "coach", "slot": "primary", "family": "coach_primary", "kind": "gun", "payload": "weapons.rifle", "display_name": "Assault Rifle", "description": "Hold to fire. Reloads on its own when the clip runs dry.", "cooldown_s": 0, "base_max_stock": 1, "must_key_press": false, "interrupt_priority": "Skill", "activation_state_class": "CoachFireRifle", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_shotgun", "survivor": "coach", "slot": "primary", "family": "coach_primary", "kind": "gun", "payload": "weapons.shotgun", "display_name": "Pump Shotgun", "description": "A blast of pellets, strongest up close. Pumps between shots and reloads one shell at a time.", "cooldown_s": 0, "base_max_stock": 1, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachFireShotgun", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_smg", "survivor": "coach", "slot": "primary", "family": "coach_primary", "kind": "gun", "payload": "weapons.smg", "display_name": "SMG", "description": "Hold to spray fast, loose shots. Best at close range.", "cooldown_s": 0, "base_max_stock": 1, "must_key_press": false, "interrupt_priority": "Skill", "activation_state_class": "CoachFireSmg", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_sniper", "survivor": "coach", "slot": "primary", "family": "coach_primary", "kind": "gun", "payload": "weapons.sniper", "display_name": "Hunting Rifle", "description": "One heavy shot that pierces its target. Reloads when empty.", "cooldown_s": 0, "base_max_stock": 1, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachFireSniper", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_shove", "survivor": "coach", "slot": "secondary", "family": "coach_secondary", "kind": "melee", "payload": "abilities.shove", "display_name": "Shove", "description": "Knock back and stun everything in front of you.", "cooldown_s": 3.0, "base_max_stock": 2, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachShove", "activation_state_machine": "Weapon", "icon_method": "render a still from Coach's model", "unlock": "none", "verified": []},
+    {"id": "coach_adrenaline", "survivor": "coach", "slot": "utility", "family": "coach_utility", "kind": "buff", "payload": "abilities.adrenaline", "display_name": "Adrenaline", "description": "Jab a shot: move and attack faster and gain a little temporary barrier.", "cooldown_s": 16, "base_max_stock": 1, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachAdrenaline", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_pipebomb", "survivor": "coach", "slot": "special", "family": "coach_special", "kind": "throwable", "payload": "throwables.pipebomb", "display_name": "Pipe Bomb", "description": "Throw a beeping bomb that draws enemies in, then blows up.", "cooldown_s": 14, "base_max_stock": 1, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachThrowPipeBomb", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_molotov", "survivor": "coach", "slot": "special", "family": "coach_special", "kind": "throwable", "payload": "throwables.molotov", "display_name": "Molotov", "description": "Throw a bottle that bursts into a pool of fire.", "cooldown_s": 12, "base_max_stock": 1, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachThrowMolotov", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []},
+    {"id": "coach_bile", "survivor": "coach", "slot": "special", "family": "coach_special", "kind": "throwable", "payload": "throwables.bile", "display_name": "Bile Jar", "description": "Splash enemies with bile: they take extra damage and the rest come running.", "cooldown_s": 16, "base_max_stock": 1, "must_key_press": true, "interrupt_priority": "Skill", "activation_state_class": "CoachThrowBile", "activation_state_machine": "Weapon", "icon_method": "render a still from the item's model", "unlock": "none", "verified": []}
+  ]
+}
